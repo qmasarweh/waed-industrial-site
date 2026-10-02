@@ -1,12 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { usePrefersReducedMotion } from "../lib/usePrefersReducedMotion";
+import { asset } from "../lib/asset";
 
 type IntroLoaderProps = {
   onComplete: () => void;
 };
 
-const INTRO_DESKTOP = "/video/waed-intro.mp4";
-const INTRO_MOBILE = "/video/waed-intro-mobile.mp4";
+const INTRO_DESKTOP = asset("/video/waed-intro.mp4");
+const INTRO_MOBILE = asset("/video/waed-intro-mobile.mp4");
 
 function pickIntroSrc() {
   if (typeof window === "undefined") return INTRO_DESKTOP;

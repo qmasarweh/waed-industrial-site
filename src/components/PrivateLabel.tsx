@@ -1,4 +1,5 @@
 import { privateLabel } from "../content/site";
+import { asset } from "../lib/asset";
 import { MarkRule } from "./MarkRule";
 import { ScrollType } from "./motion/ScrollType";
 import { Parallax } from "./motion/Parallax";
@@ -25,7 +26,7 @@ export function PrivateLabel() {
           <figure className="media-frame media-frame--parallax">
             <Parallax speed="medium" scale={1.18}>
               <img
-                src="/img/logo_extract_3_2.png"
+                src={asset("/img/logo_extract_3_2.png")}
                 alt="WAED Industrial Innovation Company branded facility"
                 width={1200}
                 height={900}

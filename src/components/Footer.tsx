@@ -1,4 +1,5 @@
 import { nav, site } from "../content/site";
+import { asset } from "../lib/asset";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -8,7 +9,7 @@ export function Footer() {
       <div className="shell footer-grid">
         <div>
           <img
-            src="/img/waed-logo-horizontal-navy.svg"
+            src={asset("/img/waed-logo-horizontal-navy.svg")}
             alt={site.legalName}
             width={240}
             height={52}

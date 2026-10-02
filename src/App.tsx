@@ -16,6 +16,7 @@ import { ScrollProgress } from "./components/motion/ScrollProgress";
 import { LiveGlow } from "./components/motion/LiveGlow";
 import { MediaBand } from "./components/motion/MediaBand";
 import { IntroLoader } from "./components/IntroLoader";
+import { asset } from "./lib/asset";
 
 export default function App() {
   const [introDone, setIntroDone] = useState(false);
@@ -35,7 +36,7 @@ export default function App() {
         <About />
         <Statement line="Local manufacturing. Regional reach. Reliable supply." />
         <MediaBand
-          src="/img/placeholders/logo_page_0.png"
+          src={asset("/img/placeholders/logo_page_0.png")}
           alt="WAED Industrial facility with brand mark"
           caption="Facility · Brand · Bahrain"
           speed="fast"
@@ -49,7 +50,7 @@ export default function App() {
         />
         <PrivateLabel />
         <MediaBand
-          src="/img/logo-wall.png"
+          src={asset("/img/logo-wall.png")}
           alt="WAED Industrial brand wall"
           caption="Brand · Built in Bahrain"
           speed="medium"

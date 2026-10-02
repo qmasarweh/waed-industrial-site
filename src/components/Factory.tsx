@@ -1,4 +1,5 @@
 import { factory, site } from "../content/site";
+import { asset } from "../lib/asset";
 import { MarkRule } from "./MarkRule";
 import { ScrollType } from "./motion/ScrollType";
 import { Parallax } from "./motion/Parallax";
@@ -23,7 +24,7 @@ export function Factory() {
           <figure className="media-frame media-frame--parallax reveal reveal--scale">
             <Parallax speed="fast" scale={1.2}>
               <img
-                src="/img/facility-hero.png"
+                src={asset("/img/facility-hero.png")}
                 alt="WAED Industrial manufacturing facility in Hidd, Bahrain"
                 width={1400}
                 height={900}

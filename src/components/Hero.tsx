@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { home, site } from "../content/site";
+import { asset } from "../lib/asset";
 import { ScrollType } from "./motion/ScrollType";
 import { BrandMark } from "./BrandMark";
 
@@ -115,7 +116,7 @@ export function Hero() {
           <div className="hero__media">
             <img
               ref={img}
-              src="/img/facility-hero.png"
+              src={asset("/img/facility-hero.png")}
               alt=""
               width={1920}
               height={1080}
@@ -132,7 +133,7 @@ export function Hero() {
           <p className="hero__place">Bahrain · Hidd</p>
           <img
             className="hero__brand"
-            src="/img/waed-logo-horizontal-white.svg"
+            src={asset("/img/waed-logo-horizontal-white.svg")}
             alt={site.legalName}
             width={420}
             height={90}

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { nav, site } from "../content/site";
+import { asset } from "../lib/asset";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -41,7 +42,7 @@ export function Header() {
           <a className="brand-lockup" href="#top" aria-label={`${site.displayName} home`} onClick={close}>
             <img
               className="brand-lockup__mark"
-              src={light ? "/img/waed-logo-vertical-white.svg" : "/img/waed-logo-vertical.svg"}
+              src={light ? asset("/img/waed-logo-vertical-white.svg") : asset("/img/waed-logo-vertical.svg")}
               alt={site.legalName}
               width={36}
               height={42}
