@@ -8,7 +8,8 @@
       name="description"
       content="Bahrain-based manufacturer of soap, detergents and cleaning preparations. Private label, contract manufacturing, and quality-controlled production for retail, institutional and export partners."
     />
-    <link rel="icon" type="image/png" href="./img/favicon-32.png" />
+    <link rel="icon" href="./img/waed-logo-vertical.svg" type="image/svg+xml" />
+    <link rel="alternate icon" href="./img/favicon-32.png" type="image/png" sizes="32x32" />
     <link rel="apple-touch-icon" href="./img/apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,6 +21,15 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      (function () {
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, "", redirect);
+        }
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

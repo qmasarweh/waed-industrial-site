@@ -26,31 +26,15 @@ export type NavLink = {
   href: string;
 };
 
-export type NavDropdown = {
-  label: string;
-  children: NavLink[];
-};
-
-export type NavItem = NavLink | NavDropdown;
-
-export function isNavDropdown(item: NavItem): item is NavDropdown {
-  return "children" in item;
-}
+export type NavItem = NavLink;
 
 export const nav: NavItem[] = [
-  { href: "#about", label: "About" },
-  { href: "#factory", label: "Factory" },
-  {
-    label: "Our Brands",
-    children: [
-      { href: "#brands", label: "Enaya" },
-      // Add future brand items here, e.g.:
-      // { href: "#brand-name", label: "Brand Name" },
-    ],
-  },
-  { href: "#private-label", label: "Private Label" },
-  { href: "#quality", label: "Quality" },
-  { href: "#contact", label: "Contact" },
+  { href: "/#about", label: "About" },
+  { href: "/#factory", label: "Factory" },
+  { href: "/brands", label: "Our Brands" },
+  { href: "/#private-label", label: "Private Label" },
+  { href: "/#quality", label: "Quality" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export const home = {
@@ -140,58 +124,184 @@ export const lineup = {
     "Pack sizes, concentrations, fragrance variants and technical data sheets are supplied on request.",
 } as const;
 
+export type BrandProduct = {
+  name: string;
+  category: string;
+  body: string;
+};
+
+export type BrandGalleryShot = {
+  src: string;
+  alt: string;
+  caption: string;
+};
+
+export type BrandEntry = {
+  id: string;
+  name: string;
+  tagline: string;
+  story: string;
+  focus: string[];
+  logo: string;
+  titleClass?: string;
+  products: BrandProduct[];
+  gallery: BrandGalleryShot[];
+};
+
 export const brands = {
   title: "Our Brands",
-  lead: "We build and manufacture brands from our facility in Bahrain — starting with Enaya.",
-  name: "ENAYA",
-  tagline: "Household and professional cleaning from Bahrain.",
-  purpose:
-    "Enaya is our first brand: eight core products made for everyday homes and professional use.",
-  growingNote:
-    "Right now Enaya is our only brand. More brands will be added here as we grow.",
-  products: [
+  lead: "We build and manufacture brands from our facility in Bahrain — starting with Enaya and Clean.",
+  page: {
+    eyebrow: "Brand House",
+    title: "Our Brands",
+    heroLine: "Crafted in Bahrain. Built for the region.",
+    intro:
+      "WAED Industrial develops and manufactures brands with controlled formulation, consistent quality, and a clear commercial presence — beginning with Enaya and Clean.",
+  },
+  /**
+   * Brand house catalog. Add entries here as new brands launch (designed for 3–5+).
+   * Each entry renders its own section on /brands.
+   */
+  catalog: [
     {
-      name: "Dishwashing Liquid",
-      category: "Kitchen",
-      body: "Concentrated dishwashing liquid for household kitchens and professional food-service environments.",
+      id: "enaya",
+      name: "ENAYA",
+      tagline: "Household and professional cleaning from Bahrain.",
+      story:
+        "Enaya brings dependable household and professional cleaning products from our registered facility in Hidd. Clear formulations. Flexible packs. Supply you can plan around.",
+      focus: ["Household", "Hospitality", "Institutional", "Professional cleaning"],
+      logo: "/img/enaya/logo.jpg",
+      titleClass: "enaya-title",
+      gallery: [
+        {
+          src: "/img/enaya/hand-sanitizer.jpg",
+          alt: "Enaya hand sanitizer gel 500ml",
+          caption: "Hand Sanitizer · 500ml",
+        },
+        {
+          src: "/img/enaya/protective-set.jpg",
+          alt: "Enaya portable personal protection set with sanitizer, wipes, mask and gloves",
+          caption: "Protection Set",
+        },
+        {
+          src: "/img/enaya/disinfectant-kit.jpg",
+          alt: "Enaya hand sanitizer lifestyle photography",
+          caption: "Everyday Care",
+        },
+      ],
+      products: [
+        {
+          name: "Dishwashing Liquid",
+          category: "Kitchen",
+          body: "Concentrated dishwashing liquid for household kitchens and professional food-service environments.",
+        },
+        {
+          name: "Hand Wash",
+          category: "Hygiene",
+          body: "Liquid hand wash for everyday personal hygiene in home and workplace settings.",
+        },
+        {
+          name: "Laundry Liquid",
+          category: "Laundry",
+          body: "Laundry detergent liquid for domestic and institutional laundry loads.",
+        },
+        {
+          name: "Fabric Softener",
+          category: "Laundry",
+          body: "Fabric softener for improved fabric feel after laundering.",
+        },
+        {
+          name: "Multipurpose Cleaner",
+          category: "Surface",
+          body: "General-purpose cleaner for routine cleaning of hard surfaces across the facility.",
+        },
+        {
+          name: "Glass Cleaner",
+          category: "Surface",
+          body: "Glass cleaner for streak-free cleaning of windows and glass surfaces.",
+        },
+        {
+          name: "Disinfectant",
+          category: "Hygiene",
+          body: "Disinfectant for hygiene-focused cleaning protocols in commercial settings.",
+        },
+        {
+          name: "Hand Sanitizer",
+          category: "Hygiene",
+          body: "Hand sanitizer for entrances, workplaces and public-facing counters.",
+        },
+      ],
     },
     {
-      name: "Hand Wash",
-      category: "Hygiene",
-      body: "Liquid hand wash for everyday personal hygiene in home and workplace settings.",
+      id: "clean",
+      name: "CLEAN",
+      tagline: "Everyday surfaces. Clear results.",
+      story:
+        "Clean is built for fast, reliable surface care across homes, offices, and shared spaces. Practical formulas. Fresh finish. Easy to stock and easy to use.",
+      focus: ["Household", "Offices", "Retail", "Facilities"],
+      logo: "/img/clean/logo.jpg",
+      gallery: [
+        {
+          src: "/img/clean/product.jpg",
+          alt: "Clean multipurpose cleaner bottle",
+          caption: "Multipurpose Cleaner",
+        },
+        {
+          src: "/img/clean/bathroom.jpg",
+          alt: "Clean bathroom cleaner spray bottle",
+          caption: "Bathroom Cleaner",
+        },
+        {
+          src: "/img/clean/floor.jpg",
+          alt: "Clean floor cleaner bottle",
+          caption: "Floor Cleaner",
+        },
+        {
+          src: "/img/clean/kitchen.jpg",
+          alt: "Clean kitchen degreaser spray bottle",
+          caption: "Kitchen Degreaser",
+        },
+        {
+          src: "/img/clean/glass.jpg",
+          alt: "Clean glass and window spray bottle",
+          caption: "Glass & Window",
+        },
+      ],
+      products: [
+        {
+          name: "Multipurpose Cleaner",
+          category: "Surface",
+          body: "Everyday multipurpose cleaner for counters, fixtures, and high-touch hard surfaces.",
+        },
+        {
+          name: "Floor Cleaner",
+          category: "Floor",
+          body: "Floor cleaner for tiled and hard floors in homes and light commercial spaces.",
+        },
+        {
+          name: "Bathroom Cleaner",
+          category: "Bathroom",
+          body: "Bathroom cleaner for sinks, tiles, and washroom surfaces that need a fresh finish.",
+        },
+        {
+          name: "Kitchen Degreaser",
+          category: "Kitchen",
+          body: "Kitchen degreaser for cooktops, splashbacks, and grease-prone work areas.",
+        },
+        {
+          name: "Glass & Window",
+          category: "Surface",
+          body: "Glass and window cleaner for streak-free shine on glass, mirrors, and panels.",
+        },
+      ],
     },
-    {
-      name: "Laundry Liquid",
-      category: "Laundry",
-      body: "Laundry detergent liquid for domestic and institutional laundry loads.",
-    },
-    {
-      name: "Fabric Softener",
-      category: "Laundry",
-      body: "Fabric softener for improved fabric feel after laundering.",
-    },
-    {
-      name: "Multipurpose Cleaner",
-      category: "Surface",
-      body: "General-purpose cleaner for routine cleaning of hard surfaces across the facility.",
-    },
-    {
-      name: "Glass Cleaner",
-      category: "Surface",
-      body: "Glass cleaner for streak-free cleaning of windows and glass surfaces.",
-    },
-    {
-      name: "Disinfectant",
-      category: "Hygiene",
-      body: "Disinfectant for hygiene-focused cleaning protocols in commercial settings.",
-    },
-    {
-      name: "Hand Sanitizer",
-      category: "Hygiene",
-      body: "Hand sanitizer for entrances, workplaces and public-facing counters.",
-    },
-  ],
+    // Add brand 3–5 here, e.g.:
+    // { id: "brand-id", name: "NAME", tagline: "...", story: "...", focus: [], logo: "/img/.../logo.jpg", gallery: [], products: [] },
+  ] satisfies BrandEntry[],
 } as const;
+
+/** Enaya lineup used on the homepage products grid. */
+export const products = brands.catalog.find((b) => b.id === "enaya")!.products;
 
 export const privateLabel = {
   eyebrow: "Contract Manufacturing",

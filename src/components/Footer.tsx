@@ -1,4 +1,5 @@
-import { isNavDropdown, nav, site } from "../content/site";
+import { Link } from "react-router-dom";
+import { nav, site } from "../content/site";
 import { asset } from "../lib/asset";
 
 export function Footer() {
@@ -22,19 +23,11 @@ export function Footer() {
         <div className="footer-cols">
           <div>
             <strong>Explore</strong>
-            {nav.flatMap((item) =>
-              isNavDropdown(item)
-                ? item.children.map((child) => (
-                    <a key={child.href} href={child.href}>
-                      {child.label}
-                    </a>
-                  ))
-                : [
-                    <a key={item.href} href={item.href}>
-                      {item.label}
-                    </a>,
-                  ],
-            )}
+            {nav.map((item) => (
+              <Link key={item.href} to={item.href}>
+                {item.label}
+              </Link>
+            ))}
           </div>
           <div>
             <strong>Contact</strong>

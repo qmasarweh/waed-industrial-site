@@ -1,66 +1,52 @@
-import { useCallback, useState } from "react";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { Header } from "./components/Header";
-import { Hero } from "./components/Hero";
-import { About } from "./components/About";
-import { Factory } from "./components/Factory";
-import { Products } from "./components/Products";
-import { PrivateLabel } from "./components/PrivateLabel";
-import { Quality } from "./components/Quality";
-import { Markets } from "./components/Markets";
-import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
-import { Statement } from "./components/Statement";
-import { RevealObserver } from "./components/RevealObserver";
 import { SmoothScroll } from "./components/motion/SmoothScroll";
 import { ScrollProgress } from "./components/motion/ScrollProgress";
 import { LiveGlow } from "./components/motion/LiveGlow";
-import { MediaBand } from "./components/motion/MediaBand";
-import { IntroLoader } from "./components/IntroLoader";
-import { asset } from "./lib/asset";
+import { HomePage } from "./pages/HomePage";
+import { BrandsPage } from "./pages/BrandsPage";
+import { useEffect } from "react";
 
-export default function App() {
-  const [introDone, setIntroDone] = useState(false);
-  const handleIntroComplete = useCallback(() => setIntroDone(true), []);
+function ScrollToHash() {
+  const location = useLocation();
 
+  useEffect(() => {
+    if (!location.hash) return;
+    const id = location.hash.slice(1);
+    const timer = window.setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 80);
+    return () => window.clearTimeout(timer);
+  }, [location.pathname, location.hash]);
+
+  return null;
+}
+
+function AppShell() {
   return (
     <>
-      {!introDone && <IntroLoader onComplete={handleIntroComplete} />}
-
       <SmoothScroll />
       <ScrollProgress />
       <LiveGlow />
       <div className="noise" aria-hidden="true" />
       <Header />
-      <main className={`page-parallax${introDone ? " is-ready" : ""}`}>
-        <Hero />
-        <About />
-        <Statement line="Local manufacturing. Regional reach. Reliable supply." />
-        <MediaBand
-          src={asset("/img/placeholders/logo_page_0.png")}
-          alt="WAED Industrial facility with brand mark"
-          caption="Facility · Brand · Bahrain"
-          speed="fast"
-        />
-        <Factory />
-        <Products />
-        <Statement
-          tone="navy"
-          eyebrow="Private label"
-          line="Your brand. Our facility. Made in Bahrain."
-        />
-        <PrivateLabel />
-        <MediaBand
-          src={asset("/img/logo-wall.png")}
-          alt="WAED Industrial brand wall"
-          caption="Brand · Built in Bahrain"
-          speed="medium"
-        />
-        <Quality />
-        <Markets />
-        <Contact />
-      </main>
+      <ScrollToHash />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/brands" element={<BrandsPage />} />
+      </Routes>
       <Footer />
-      {introDone && <RevealObserver />}
     </>
+  );
+}
+
+export default function App() {
+  const basename = import.meta.env.BASE_URL.replace(/\/$/, "") || undefined;
+
+  return (
+    <BrowserRouter basename={basename}>
+      <AppShell />
+    </BrowserRouter>
   );
 }

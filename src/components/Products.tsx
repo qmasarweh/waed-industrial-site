@@ -1,4 +1,5 @@
-import { brands, lineup } from "../content/site";
+import { Link } from "react-router-dom";
+import { lineup, products } from "../content/site";
 import { MarkRule } from "./MarkRule";
 import { ScrollType } from "./motion/ScrollType";
 
@@ -14,7 +15,7 @@ export function Products() {
         </div>
 
         <ul className="product-grid reveal reveal--up" aria-label="Product lineup">
-          {brands.products.map((product, i) => (
+          {products.map((product, i) => (
             <li key={product.name}>
               <div className="product-grid__meta">
                 <span className="product-grid__index">{String(i + 1).padStart(2, "0")}</span>
@@ -28,26 +29,16 @@ export function Products() {
 
         <p className="product-note reveal reveal--up">{lineup.productsNote}</p>
 
-        <p className="section-head__action section-head__action--center reveal reveal--up">
-          <a className="btn btn-primary" href="#contact">
-            Request a Product Quote
-          </a>
-        </p>
-
-        <div className="brands-block" id="brands">
-          <div className="section-head section-head--center">
-            <ScrollType text={brands.title} className="brands-block__title" mode="rise" />
-            <MarkRule />
-            <p className="lead reveal reveal--up">{brands.lead}</p>
-          </div>
-
-          <article className="brand-feature reveal reveal--up">
-            <p className="brand-feature__label">Current brand</p>
-            <h3 className="brand-feature__name enaya-title">{brands.name}</h3>
-            <p className="brand-feature__tagline">{brands.tagline}</p>
-            <p className="brand-feature__body">{brands.purpose}</p>
-            <p className="brand-feature__note">{brands.growingNote}</p>
-          </article>
+        <div className="brands-launch reveal reveal--up">
+          <p className="brands-launch__kicker">Next</p>
+          <h3 className="brands-launch__title">Explore Our Brands</h3>
+          <p className="brands-launch__copy">
+            Meet Enaya, Clean — and the brand house growing from our facility in Bahrain.
+          </p>
+          <Link className="brands-launch__btn" to="/brands">
+            Explore Our Brands
+            <span aria-hidden="true">→</span>
+          </Link>
         </div>
       </div>
     </section>
