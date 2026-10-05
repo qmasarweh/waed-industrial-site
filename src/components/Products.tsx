@@ -1,4 +1,4 @@
-import { brands } from "../content/site";
+import { brands, lineup } from "../content/site";
 import { MarkRule } from "./MarkRule";
 import { ScrollType } from "./motion/ScrollType";
 
@@ -7,18 +7,13 @@ export function Products() {
     <section className="section scene scene--cover" id="products">
       <div className="shell">
         <div className="section-head section-head--center">
-          <p className="eyebrow">{brands.eyebrow}</p>
-          <ScrollType text={brands.name} className="enaya-title" mode="drift" />
+          <p className="eyebrow">{lineup.eyebrow}</p>
+          <ScrollType text={lineup.title} mode="rise" />
           <MarkRule />
-          <p className="lead reveal reveal--up">{brands.tagline}</p>
-          <p className="lead muted reveal reveal--up">{brands.purpose}</p>
+          <p className="lead reveal reveal--up">{lineup.lead}</p>
         </div>
 
-        <div className="product-lineup reveal reveal--up">
-          <h3 className="product-lineup__title">Our Product Lineup</h3>
-        </div>
-
-        <ul className="product-grid reveal reveal--up" aria-label="ENAYA product range">
+        <ul className="product-grid reveal reveal--up" aria-label="Product lineup">
           {brands.products.map((product, i) => (
             <li key={product.name}>
               <div className="product-grid__meta">
@@ -31,13 +26,29 @@ export function Products() {
           ))}
         </ul>
 
-        <p className="product-note reveal reveal--up">{brands.productsNote}</p>
+        <p className="product-note reveal reveal--up">{lineup.productsNote}</p>
 
         <p className="section-head__action section-head__action--center reveal reveal--up">
           <a className="btn btn-primary" href="#contact">
             Request a Product Quote
           </a>
         </p>
+
+        <div className="brands-block" id="brands">
+          <div className="section-head section-head--center">
+            <ScrollType text={brands.title} className="brands-block__title" mode="rise" />
+            <MarkRule />
+            <p className="lead reveal reveal--up">{brands.lead}</p>
+          </div>
+
+          <article className="brand-feature reveal reveal--up">
+            <p className="brand-feature__label">Current brand</p>
+            <h3 className="brand-feature__name enaya-title">{brands.name}</h3>
+            <p className="brand-feature__tagline">{brands.tagline}</p>
+            <p className="brand-feature__body">{brands.purpose}</p>
+            <p className="brand-feature__note">{brands.growingNote}</p>
+          </article>
+        </div>
       </div>
     </section>
   );

@@ -1,11 +1,15 @@
-import { useEffect, useState } from "react";
-import { nav, site } from "../content/site";
+import { useEffect, useId, useRef, useState } from "react";
+import { isNavDropdown, nav, site } from "../content/site";
 import { asset } from "../lib/asset";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [overDark, setOverDark] = useState(true);
+  const [desktopBrandsOpen, setDesktopBrandsOpen] = useState(false);
+  const [mobileBrandsOpen, setMobileBrandsOpen] = useState(false);
+  const brandsMenuId = useId();
+  const brandsWrapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => {
@@ -30,7 +34,32 @@ export function Header() {
     };
   }, [open]);
 
-  const close = () => setOpen(false);
+  useEffect(() => {
+    if (!desktopBrandsOpen) return;
+
+    const onPointerDown = (event: MouseEvent) => {
+      if (!brandsWrapRef.current?.contains(event.target as Node)) {
+        setDesktopBrandsOpen(false);
+      }
+    };
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setDesktopBrandsOpen(false);
+    };
+
+    document.addEventListener("mousedown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [desktopBrandsOpen]);
+
+  const close = () => {
+    setOpen(false);
+    setMobileBrandsOpen(false);
+    setDesktopBrandsOpen(false);
+  };
+
   const light = overDark && !scrolled && !open;
 
   return (
@@ -50,11 +79,55 @@ export function Header() {
           </a>
 
           <nav className="nav-desktop" aria-label="Primary">
-            {nav.map((item) => (
-              <a key={item.href} href={item.href}>
-                {item.label}
-              </a>
-            ))}
+            {nav.map((item) => {
+              if (!isNavDropdown(item)) {
+                return (
+                  <a key={item.href} href={item.href}>
+                    {item.label}
+                  </a>
+                );
+              }
+
+              return (
+                <div
+                  key={item.label}
+                  className={`nav-dropdown${desktopBrandsOpen ? " is-open" : ""}`}
+                  ref={brandsWrapRef}
+                  onMouseEnter={() => setDesktopBrandsOpen(true)}
+                  onMouseLeave={() => setDesktopBrandsOpen(false)}
+                >
+                  <button
+                    type="button"
+                    className="nav-dropdown__trigger"
+                    aria-haspopup="true"
+                    aria-expanded={desktopBrandsOpen}
+                    aria-controls={brandsMenuId}
+                    onClick={() => setDesktopBrandsOpen((v) => !v)}
+                  >
+                    {item.label}
+                    <span className="nav-dropdown__caret" aria-hidden="true" />
+                  </button>
+                  <div
+                    id={brandsMenuId}
+                    className="nav-dropdown__menu"
+                    role="menu"
+                    hidden={!desktopBrandsOpen}
+                  >
+                    {item.children.map((child) => (
+                      <a
+                        key={child.href}
+                        href={child.href}
+                        role="menuitem"
+                        onClick={() => setDesktopBrandsOpen(false)}
+                      >
+                        {child.label}
+                      </a>
+                    ))}
+                    {/* Add future brand items in site.ts → nav → Our Brands → children */}
+                  </div>
+                </div>
+              );
+            })}
           </nav>
 
           <div className="header-actions">
@@ -76,11 +149,41 @@ export function Header() {
 
       <nav className={`nav-mobile${open ? " is-open" : ""}`} aria-label="Mobile">
         <div className="nav-mobile__panel">
-          {nav.map((item) => (
-            <a key={item.href} href={item.href} onClick={close}>
-              {item.label}
-            </a>
-          ))}
+          {nav.map((item) => {
+            if (!isNavDropdown(item)) {
+              return (
+                <a key={item.href} href={item.href} onClick={close}>
+                  {item.label}
+                </a>
+              );
+            }
+
+            return (
+              <div
+                key={item.label}
+                className={`nav-mobile__dropdown${mobileBrandsOpen ? " is-open" : ""}`}
+              >
+                <button
+                  type="button"
+                  className="nav-mobile__dropdown-trigger"
+                  aria-haspopup="true"
+                  aria-expanded={mobileBrandsOpen}
+                  onClick={() => setMobileBrandsOpen((v) => !v)}
+                >
+                  {item.label}
+                  <span className="nav-dropdown__caret" aria-hidden="true" />
+                </button>
+                <div className="nav-mobile__submenu" hidden={!mobileBrandsOpen}>
+                  {item.children.map((child) => (
+                    <a key={child.href} href={child.href} onClick={close}>
+                      {child.label}
+                    </a>
+                  ))}
+                  {/* Add future brand items in site.ts → nav → Our Brands → children */}
+                </div>
+              </div>
+            );
+          })}
           <a className="btn btn-primary nav-mobile__cta" href="#contact" onClick={close}>
             Request a Quote
           </a>

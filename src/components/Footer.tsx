@@ -1,4 +1,4 @@
-import { nav, site } from "../content/site";
+import { isNavDropdown, nav, site } from "../content/site";
 import { asset } from "../lib/asset";
 
 export function Footer() {
@@ -22,11 +22,19 @@ export function Footer() {
         <div className="footer-cols">
           <div>
             <strong>Explore</strong>
-            {nav.map((item) => (
-              <a key={item.href} href={item.href}>
-                {item.label}
-              </a>
-            ))}
+            {nav.flatMap((item) =>
+              isNavDropdown(item)
+                ? item.children.map((child) => (
+                    <a key={child.href} href={child.href}>
+                      {child.label}
+                    </a>
+                  ))
+                : [
+                    <a key={item.href} href={item.href}>
+                      {item.label}
+                    </a>,
+                  ],
+            )}
           </div>
           <div>
             <strong>Contact</strong>

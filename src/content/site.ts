@@ -21,14 +21,37 @@ export const site = {
     ),
 } as const;
 
-export const nav = [
+export type NavLink = {
+  label: string;
+  href: string;
+};
+
+export type NavDropdown = {
+  label: string;
+  children: NavLink[];
+};
+
+export type NavItem = NavLink | NavDropdown;
+
+export function isNavDropdown(item: NavItem): item is NavDropdown {
+  return "children" in item;
+}
+
+export const nav: NavItem[] = [
   { href: "#about", label: "About" },
   { href: "#factory", label: "Factory" },
-  { href: "#products", label: "ENAYA" },
+  {
+    label: "Our Brands",
+    children: [
+      { href: "#brands", label: "Enaya" },
+      // Add future brand items here, e.g.:
+      // { href: "#brand-name", label: "Brand Name" },
+    ],
+  },
   { href: "#private-label", label: "Private Label" },
   { href: "#quality", label: "Quality" },
   { href: "#contact", label: "Contact" },
-] as const;
+];
 
 export const home = {
   headline: "Reliable Cleaning Solutions. Made in Bahrain.",
@@ -109,14 +132,23 @@ export const factory = {
   ],
 } as const;
 
+export const lineup = {
+  eyebrow: "What We Offer",
+  title: "Our Product Lineup",
+  lead: "Core cleaning products for households, retailers, distributors, institutions, hospitality, and professional cleaning services — manufactured in Hidd.",
+  productsNote:
+    "Pack sizes, concentrations, fragrance variants and technical data sheets are supplied on request.",
+} as const;
+
 export const brands = {
-  eyebrow: "Our Brands",
+  title: "Our Brands",
+  lead: "We build and manufacture brands from our facility in Bahrain — starting with Enaya.",
   name: "ENAYA",
   tagline: "Household and professional cleaning from Bahrain.",
   purpose:
-    "Eight core products for households, retailers, distributors, institutions, hospitality, and professional cleaning services — manufactured in Hidd.",
-  productsNote:
-    "Pack sizes, concentrations, fragrance variants and technical data sheets are supplied on request.",
+    "Enaya is our first brand: eight core products made for everyday homes and professional use.",
+  growingNote:
+    "Right now Enaya is our only brand. More brands will be added here as we grow.",
   products: [
     {
       name: "Dishwashing Liquid",
