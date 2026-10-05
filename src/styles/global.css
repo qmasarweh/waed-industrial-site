@@ -1171,9 +1171,11 @@ textarea {
   margin: 0 auto;
   padding: 0;
   display: grid;
+  grid-template-columns: 1fr;
   gap: 0;
   position: relative;
   max-width: 22rem;
+  width: 100%;
 }
 
 /* Mobile: no center rail — it cuts through stage copy */
@@ -1188,6 +1190,7 @@ textarea {
   gap: 0.85rem;
   padding: 1.15rem 0.5rem;
   position: relative;
+  min-width: 0;
 }
 
 .factory-flow__marker {
@@ -1261,29 +1264,34 @@ textarea {
   text-wrap: pretty;
 }
 
-/* Desktop: horizontal process rail */
-@media (min-width: 860px) {
+/* Tablet/desktop: keep all four stages on one centered row */
+@media (min-width: 700px) {
   .factory-flow {
-    padding: 2.75rem 2rem 3rem;
+    padding: 2.5rem 1.5rem 2.75rem;
   }
 
   .factory-flow__head {
-    margin-bottom: 2.5rem;
+    margin-bottom: 2.25rem;
   }
 
   .factory-flow__track {
+    display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 0;
+    align-items: start;
+    justify-items: center;
     max-width: none;
+    width: 100%;
+    gap: 0;
     padding: 0.75rem 0 0;
   }
 
   .factory-flow__track::before {
     content: "";
-    top: 3.35rem;
+    position: absolute;
+    top: 3rem;
     bottom: auto;
-    left: 10%;
-    right: 10%;
+    left: 8%;
+    right: 8%;
     width: auto;
     height: 2px;
     transform: none;
@@ -1299,8 +1307,54 @@ textarea {
   }
 
   .factory-flow__stage {
+    width: 100%;
+    gap: 0.95rem;
+    padding: 0 0.45rem;
+  }
+
+  .factory-flow__index {
+    width: 2.35rem;
+    height: 2.35rem;
+    font-size: 0.7rem;
+    top: -0.3rem;
+    right: -0.35rem;
+  }
+
+  .factory-flow__icon {
+    width: clamp(4.5rem, 9vw, 6.25rem);
+    height: clamp(4.5rem, 9vw, 6.25rem);
+    transition: transform 0.35s var(--ease-out), border-color 0.25s ease, box-shadow 0.35s ease;
+  }
+
+  .factory-flow__icon svg {
+    width: clamp(2.1rem, 4vw, 2.9rem);
+    height: clamp(2.1rem, 4vw, 2.9rem);
+  }
+
+  .factory-flow__stage:hover .factory-flow__icon {
+    transform: translateY(-6px) scale(1.03);
+    border-color: var(--steel);
+    box-shadow: 0 16px 36px rgba(14, 24, 40, 0.12);
+  }
+
+  .factory-flow__copy strong {
+    font-size: clamp(1.05rem, 0.9rem + 0.7vw, 1.45rem);
+  }
+
+  .factory-flow__copy p {
+    font-size: clamp(0.82rem, 0.75rem + 0.3vw, 0.95rem);
+    max-width: 15ch;
+  }
+}
+
+@media (min-width: 1100px) {
+  .factory-flow {
+    padding: 2.75rem 2rem 3rem;
+  }
+
+  .factory-flow__stage {
+    padding: 0 0.75rem;
     gap: 1.15rem;
-    padding: 0 0.85rem;
   }
 
   .factory-flow__index {
@@ -1309,23 +1363,6 @@ textarea {
     font-size: 0.78rem;
     top: -0.4rem;
     right: -0.5rem;
-  }
-
-  .factory-flow__icon {
-    width: 6.75rem;
-    height: 6.75rem;
-    transition: transform 0.35s var(--ease-out), border-color 0.25s ease, box-shadow 0.35s ease;
-  }
-
-  .factory-flow__icon svg {
-    width: 3.1rem;
-    height: 3.1rem;
-  }
-
-  .factory-flow__stage:hover .factory-flow__icon {
-    transform: translateY(-6px) scale(1.03);
-    border-color: var(--steel);
-    box-shadow: 0 16px 36px rgba(14, 24, 40, 0.12);
   }
 
   .factory-flow__copy strong {
