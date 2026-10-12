@@ -49,7 +49,7 @@ export function HomePage() {
       <main className={`page-parallax${introDone ? " is-ready" : ""}`}>
         <Hero />
         <About />
-        <Statement line="Local manufacturing. Regional reach. Reliable supply." />
+        <Statement line="Rooted in Bahrain. Driven by Innovation. Built for the Future." />
         <MediaBand
           src={asset("/img/facility-media.jpg")}
           alt="WAED Industrial manufacturing facility exterior"
@@ -61,7 +61,7 @@ export function HomePage() {
         <Statement
           tone="navy"
           eyebrow="Private label"
-          line="Your brand. Our facility. Made in Bahrain."
+          line="Your Vision. Our Formulation & Manufacturing Expertise."
         />
         <PrivateLabel />
         <MediaBand

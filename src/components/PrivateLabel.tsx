@@ -13,11 +13,15 @@ export function PrivateLabel() {
           <p className="eyebrow">{privateLabel.eyebrow}</p>
           <ScrollType text={privateLabel.title} mode="rise" />
           <MarkRule className="mark-rule--left" />
-          <p className="lead muted reveal reveal--up">{privateLabel.partners}</p>
           <p className="lead reveal reveal--up">{privateLabel.lead}</p>
+          {privateLabel.body.map((paragraph) => (
+            <p className="lead muted reveal reveal--up" key={paragraph.slice(0, 40)}>
+              {paragraph}
+            </p>
+          ))}
           <p className="section-head__action reveal reveal--up">
             <a className="btn btn-primary" href="#contact">
-              Start a Private-Label Brief
+              {privateLabel.cta}
             </a>
           </p>
         </div>
@@ -38,8 +42,8 @@ export function PrivateLabel() {
       </div>
 
       <div className="private-label__marquee reveal reveal--up">
-        <Marquee items={privateLabel.services} />
-        <Marquee items={privateLabel.services} reverse />
+        <Marquee items={[...privateLabel.services]} />
+        <Marquee items={[...privateLabel.services]} reverse />
       </div>
     </section>
   );

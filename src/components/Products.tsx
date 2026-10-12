@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { lineup, products } from "../content/site";
+import { brands } from "../content/site";
+import { asset } from "../lib/asset";
 import { MarkRule } from "./MarkRule";
 import { ScrollType } from "./motion/ScrollType";
 
@@ -8,32 +9,45 @@ export function Products() {
     <section className="section scene scene--cover" id="products">
       <div className="shell">
         <div className="section-head section-head--center">
-          <p className="eyebrow">{lineup.eyebrow}</p>
-          <ScrollType text={lineup.title} mode="rise" />
+          <p className="eyebrow">Our Brands & Products</p>
+          <ScrollType text={brands.title} mode="rise" />
           <MarkRule />
-          <p className="lead reveal reveal--up">{lineup.lead}</p>
+          <p className="lead reveal reveal--up">{brands.lead}</p>
+          <p className="lead muted reveal reveal--up">
+            WAED Industrial is the parent manufacturing company. Select a brand to explore its
+            product range.
+          </p>
         </div>
 
-        <ul className="product-grid reveal reveal--up" aria-label="Product lineup">
-          {products.map((product, i) => (
-            <li key={product.name}>
-              <div className="product-grid__meta">
-                <span className="product-grid__index">{String(i + 1).padStart(2, "0")}</span>
-                <span className="product-grid__category">{product.category}</span>
-              </div>
-              <strong>{product.name}</strong>
-              <p>{product.body}</p>
+        <ul className="brand-card-grid reveal reveal--up" aria-label="WAED brands">
+          {brands.catalog.map((brand) => (
+            <li key={brand.id}>
+              <Link className="brand-card" to={`/brands/${brand.id}`}>
+                <img
+                  className="brand-card__logo"
+                  src={asset(brand.logo)}
+                  alt={`${brand.name} logo`}
+                  width={160}
+                  height={160}
+                  loading="lazy"
+                />
+                <strong className={brand.titleClass}>{brand.name}</strong>
+                <p>{brand.tagline}</p>
+                <span className="brand-card__meta">
+                  {brand.products.length} products
+                  <span aria-hidden="true">→</span>
+                </span>
+              </Link>
             </li>
           ))}
         </ul>
 
-        <p className="product-note reveal reveal--up">{lineup.productsNote}</p>
-
         <div className="brands-launch reveal reveal--up">
-          <p className="brands-launch__kicker">Next</p>
-          <h3 className="brands-launch__title">Explore Our Brands</h3>
+          <p className="brands-launch__kicker">Brand House</p>
+          <h3 className="brands-launch__title">Explore the full brand house</h3>
           <p className="brands-launch__copy">
-            Meet Enaya, Clean — and the brand house growing from our facility in Bahrain.
+            Discover each brand identity, range, and market focus — manufactured by WAED Industrial
+            in Bahrain.
           </p>
           <Link className="brands-launch__btn" to="/brands">
             Explore Our Brands

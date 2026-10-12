@@ -9,12 +9,6 @@ import { ScrollType } from "../components/motion/ScrollType";
 export function BrandsPage() {
   useEffect(() => {
     window.scrollTo(0, 0);
-    const hash = window.location.hash;
-    if (!hash) return;
-    const id = hash.slice(1);
-    requestAnimationFrame(() => {
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
   }, []);
 
   const page = brands.page;
@@ -53,80 +47,36 @@ export function BrandsPage() {
           </div>
         </section>
 
-        {brands.catalog.map((brand, index) => (
-          <section
-            key={brand.id}
-            className={`section brand-block${index % 2 === 0 ? " section--alt" : ""}`}
-            id={brand.id}
-          >
-            <div className="shell">
-              <div className="brand-block__copy">
-                <p className="eyebrow">{index === 0 ? "Featured Brand" : "Brand"}</p>
-                <div className="brand-block__identity reveal reveal--up">
-                  <img
-                    className="brand-block__logo"
-                    src={asset(brand.logo)}
-                    alt={`${brand.name} logo`}
-                    width={220}
-                    height={220}
-                  />
-                  <h2
-                    className={`brand-block__name${brand.titleClass ? ` ${brand.titleClass}` : ""}`}
-                  >
-                    {brand.name}
-                  </h2>
-                  <p className="brand-block__tagline">{brand.tagline}</p>
-                </div>
-                <MarkRule />
-                <p className="lead reveal reveal--up">{brand.story}</p>
-                <ul
-                  className="brand-block__focus reveal reveal--up"
-                  aria-label={`${brand.name} focus markets`}
-                >
-                  {brand.focus.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
+        <section className="section section--alt">
+          <div className="shell">
+            <ul className="brand-card-grid brand-card-grid--page reveal reveal--up" aria-label="WAED brands">
+              {brands.catalog.map((brand) => (
+                <li key={brand.id}>
+                  <Link className="brand-card" to={`/brands/${brand.id}`}>
+                    <img
+                      className="brand-card__logo"
+                      src={asset(brand.logo)}
+                      alt={`${brand.name} logo`}
+                      width={180}
+                      height={180}
+                      loading="lazy"
+                    />
+                    <strong className={brand.titleClass}>{brand.name}</strong>
+                    <p>{brand.tagline}</p>
+                    <span className="brand-card__meta">
+                      Explore {brand.products.length} products
+                      <span aria-hidden="true">→</span>
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
 
-                <div className="brands-range reveal reveal--up">
-                  <p className="brands-range__label">
-                    Range · {brand.products.length} products
-                  </p>
-                  <ul className="brands-range__strip" aria-label={`${brand.name} product range`}>
-                    {brand.products.map((product, i) => (
-                      <li key={product.name}>
-                        <span className="brands-range__index">
-                          {String(i + 1).padStart(2, "0")}
-                        </span>
-                        <span className="brands-range__name">{product.name}</span>
-                        <span className="brands-range__cat">{product.category}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {brand.gallery.length > 0 && (
-                  <div
-                    className={`brands-thumbs reveal reveal--up${
-                      brand.gallery.length < 3 ? " brands-thumbs--sparse" : ""
-                    }`}
-                    aria-label={`${brand.name} product photography`}
-                  >
-                    {brand.gallery.map((shot) => (
-                      <figure key={shot.src} className="brands-thumbs__item">
-                        <img src={asset(shot.src)} alt={shot.alt} loading="lazy" />
-                        <figcaption>{shot.caption}</figcaption>
-                      </figure>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-          </section>
-        ))}
-
-        <section className="section section--alt brands-cta">
+        <section className="section brands-cta">
           <div className="shell brands-cta__inner reveal reveal--up">
+            <MarkRule />
             <h2>Partner with a Bahrain manufacturer.</h2>
             <p className="lead">
               Private label, contract manufacturing, or brand supply — talk to the team that makes

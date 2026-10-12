@@ -10,9 +10,8 @@ export function Markets() {
           <p className="eyebrow">{markets.eyebrow}</p>
           <ScrollType text={markets.title} mode="drift" />
           <MarkRule />
-          <p className="lead reveal reveal--up">
-            Active in <strong>{markets.active}</strong> — expanding across the GCC.
-          </p>
+          <p className="lead reveal reveal--up">{markets.lead}</p>
+          <p className="lead muted reveal reveal--up">{markets.body}</p>
         </div>
 
         <ul className="market-chips reveal reveal--up">

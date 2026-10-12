@@ -6,6 +6,7 @@ import { ScrollProgress } from "./components/motion/ScrollProgress";
 import { LiveGlow } from "./components/motion/LiveGlow";
 import { HomePage } from "./pages/HomePage";
 import { BrandsPage } from "./pages/BrandsPage";
+import { BrandPage } from "./pages/BrandPage";
 import { useEffect } from "react";
 
 function ScrollToHash() {
@@ -35,6 +36,7 @@ function AppShell() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/brands" element={<BrandsPage />} />
+        <Route path="/brands/:brandId" element={<BrandPage />} />
       </Routes>
       <Footer />
     </>

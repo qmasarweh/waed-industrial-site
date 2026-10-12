@@ -11,7 +11,18 @@ export function About() {
           <p className="eyebrow">{about.eyebrow}</p>
           <ScrollType text={about.title} mode="drift" />
           <MarkRule />
-          <p className="lead muted reveal reveal--up">{about.mission}</p>
+          {about.shortIntro.map((paragraph) => (
+            <p className="lead muted reveal reveal--up" key={paragraph.slice(0, 32)}>
+              {paragraph}
+            </p>
+          ))}
+        </div>
+
+        <div className="about-profile reveal reveal--up">
+          {about.fullProfile.map((paragraph) => (
+            <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+          ))}
+          <p className="about-profile__closing">{about.closing}</p>
         </div>
       </div>
 

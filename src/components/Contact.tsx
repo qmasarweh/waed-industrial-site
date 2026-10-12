@@ -10,23 +10,28 @@ export function Contact() {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
-    const subject = String(data.get("subject") || "General Inquiry");
+    const enquiryType = String(data.get("enquiryType") || contact.enquiryTypes[0]);
     const name = String(data.get("name") || "");
+    const company = String(data.get("company") || "");
+    const country = String(data.get("country") || "");
     const email = String(data.get("email") || "");
     const phone = String(data.get("phone") || "");
     const message = String(data.get("message") || "");
 
     const body = [
-      `Name: ${name}`,
-      `Email: ${email}`,
-      `Phone: ${phone}`,
-      `Subject: ${subject}`,
+      `Full Name: ${name}`,
+      `Company Name: ${company}`,
+      `Country: ${country}`,
+      `Email Address: ${email}`,
+      `Phone Number: ${phone}`,
+      `Enquiry Type: ${enquiryType}`,
       "",
+      "Message / Enquiry Details:",
       message,
     ].join("\n");
 
     window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(
-      `WAED enquiry — ${subject}`,
+      `WAED enquiry — ${enquiryType}`,
     )}&body=${encodeURIComponent(body)}`;
     setSent(true);
   };
@@ -39,6 +44,7 @@ export function Contact() {
           <ScrollType text={contact.title} mode="rise" />
           <MarkRule className="mark-rule--left" />
           <p className="lead reveal reveal--up">{contact.lead}</p>
+          <p className="lead muted reveal reveal--up">{contact.support}</p>
 
           <div className="contact-details">
             <a className="contact-chip" href={`mailto:${site.email}`}>
@@ -59,43 +65,54 @@ export function Contact() {
         <form className="form reveal reveal--up" onSubmit={onSubmit}>
           <div className="form-row">
             <label>
-              Name
+              Full Name
               <input name="name" required autoComplete="name" />
             </label>
             <label>
-              Email
+              Company Name
+              <input name="company" autoComplete="organization" />
+            </label>
+          </div>
+          <div className="form-row">
+            <label>
+              Country
+              <input name="country" autoComplete="country-name" />
+            </label>
+            <label>
+              Email Address
               <input name="email" type="email" required autoComplete="email" />
             </label>
           </div>
           <div className="form-row">
             <label>
-              Phone
+              Phone Number
               <input name="phone" type="tel" autoComplete="tel" />
             </label>
             <label>
-              Subject
-              <select name="subject" defaultValue={contact.subjects[1]}>
-                {contact.subjects.map((s) => (
-                  <option key={s} value={s}>
-                    {s}
+              Enquiry Type
+              <select name="enquiryType" defaultValue={contact.enquiryTypes[0]} required>
+                {contact.enquiryTypes.map((type) => (
+                  <option key={type} value={type}>
+                    {type}
                   </option>
                 ))}
               </select>
             </label>
           </div>
           <label>
-            Message
-            <textarea name="message" required placeholder="Product, pack size, estimated volume…" />
+            Message / Enquiry Details
+            <textarea
+              name="message"
+              required
+              placeholder="Tell us about your requirements, product interest, or partnership goals…"
+            />
           </label>
-          <p className="form-note">
-            For quotes, include product, pack size and estimated volume. For private-label, include target market and artwork status.
-          </p>
           <button className="btn btn-primary" type="submit">
-            Send Enquiry
+            {contact.submitLabel}
           </button>
           {sent && (
             <p className="form-success" role="status">
-              Your email client should open with the enquiry ready to send.
+              {contact.successMessage}
             </p>
           )}
         </form>

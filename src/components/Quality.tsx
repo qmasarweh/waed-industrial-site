@@ -11,16 +11,29 @@ export function Quality() {
           <ScrollType text={quality.title} mode="drift" />
           <MarkRule className="mark-rule--light" />
           <p className="lead reveal reveal--up">{quality.lead}</p>
+          {quality.body.map((paragraph) => (
+            <p className="lead reveal reveal--up" key={paragraph.slice(0, 40)}>
+              {paragraph}
+            </p>
+          ))}
         </div>
 
+        <p className="cert-heading reveal reveal--up">Our Certifications</p>
         <div className="cert-row">
           {quality.certifications.map((c) => (
             <article className="cert reveal reveal--up" key={c.code}>
-              <strong>{c.code}</strong>
-              <span>{c.title}</span>
+              <div className="cert__mark" aria-hidden="true">
+                <span>ISO</span>
+                <strong>{c.mark}</strong>
+              </div>
+              <div className="cert__copy">
+                <strong>{c.code}</strong>
+                <span>{c.title}</span>
+              </div>
             </article>
           ))}
         </div>
+        <p className="cert-note reveal reveal--up">{quality.note}</p>
       </div>
     </section>
   );
