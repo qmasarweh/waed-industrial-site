@@ -17,13 +17,6 @@ export function About() {
             </p>
           ))}
         </div>
-
-        <div className="about-profile reveal reveal--up">
-          {about.fullProfile.map((paragraph) => (
-            <p key={paragraph.slice(0, 40)}>{paragraph}</p>
-          ))}
-          <p className="about-profile__closing">{about.closing}</p>
-        </div>
       </div>
 
       <DriftRail items={about.values.map((v) => v.name)} />

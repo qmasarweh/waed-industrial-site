@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Hero } from "../components/Hero";
 import { About } from "../components/About";
+import { CompanyProfile } from "../components/CompanyProfile";
 import { Factory } from "../components/Factory";
 import { Products } from "../components/Products";
 import { PrivateLabel } from "../components/PrivateLabel";
@@ -49,6 +50,7 @@ export function HomePage() {
       <main className={`page-parallax${introDone ? " is-ready" : ""}`}>
         <Hero />
         <About />
+        <CompanyProfile />
         <Statement line="Rooted in Bahrain. Driven by Innovation. Built for the Future." />
         <MediaBand
           src={asset("/img/facility-media.jpg")}
@@ -61,7 +63,7 @@ export function HomePage() {
         <Statement
           tone="navy"
           eyebrow="Private label"
-          line="Your Vision. Our Formulation & Manufacturing Expertise."
+          line="Your Vision. Our Formulation and Manufacturing Expertise."
         />
         <PrivateLabel />
         <MediaBand

@@ -30,6 +30,7 @@ export type NavItem = NavLink;
 
 export const nav: NavItem[] = [
   { href: "/#about", label: "About" },
+  { href: "/#company-profile", label: "Company Profile" },
   { href: "/#factory", label: "Factory" },
   { href: "/brands", label: "Our Brands" },
   { href: "/#private-label", label: "Private Label" },
@@ -53,11 +54,13 @@ export const home = {
 
 export const about = {
   eyebrow: "About WAED Industrial",
-  title: "Innovation in Manufacturing. Excellence in Every Product.",
+  title: "Innovative cleaning and hygiene solutions.",
   shortIntro: [
     "WAED Industrial is a Bahrain-based manufacturing company specializing in the development and production of innovative cleaning and hygiene solutions.",
     "Combining modern manufacturing capabilities, technical expertise, and a commitment to quality, we develop our own brands and provide private-label manufacturing solutions for consumer, commercial, and industrial markets.",
   ],
+  profileEyebrow: "Company Profile",
+  profileTitle: "Innovation in Manufacturing. Excellence in Every Product.",
   fullProfile: [
     "WAED Industrial is a Bahrain-based manufacturing company dedicated to developing and producing high-quality cleaning and hygiene solutions for consumer, commercial, and industrial applications.",
     "Driven by innovation, technical expertise, and a commitment to continuous improvement, we combine modern manufacturing capabilities with a quality-focused approach to create products that meet evolving market needs.",
@@ -177,19 +180,29 @@ export const brands = {
       titleClass: "enaya-title",
       gallery: [
         {
+          src: "/img/enaya/dishwashing.jpg",
+          alt: "Enaya dishwashing liquid bottle",
+          caption: "Dishwashing Liquid",
+        },
+        {
+          src: "/img/enaya/hand-wash.jpg",
+          alt: "Enaya hand wash bottle",
+          caption: "Hand Wash",
+        },
+        {
+          src: "/img/enaya/laundry.jpg",
+          alt: "Enaya laundry liquid jug",
+          caption: "Laundry Liquid",
+        },
+        {
+          src: "/img/enaya/fabric-softener.jpg",
+          alt: "Enaya fabric softener bottle",
+          caption: "Fabric Softener",
+        },
+        {
           src: "/img/enaya/hand-sanitizer.jpg",
           alt: "Enaya hand sanitizer gel 500ml",
           caption: "Hand Sanitizer · 500ml",
-        },
-        {
-          src: "/img/enaya/protective-set.jpg",
-          alt: "Enaya portable personal protection set with sanitizer, wipes, mask and gloves",
-          caption: "Protection Set",
-        },
-        {
-          src: "/img/enaya/disinfectant-kit.jpg",
-          alt: "Enaya hand sanitizer lifestyle photography",
-          caption: "Everyday Care",
         },
       ],
       products: [
@@ -197,37 +210,43 @@ export const brands = {
           name: "Dishwashing Liquid",
           category: "Kitchen",
           body: "Concentrated dishwashing liquid for household kitchens and professional food-service environments.",
+          image: "/img/enaya/dishwashing.jpg",
         },
         {
           name: "Hand Wash",
           category: "Hygiene",
           body: "Liquid hand wash for everyday personal hygiene in home and workplace settings.",
+          image: "/img/enaya/hand-wash.jpg",
         },
         {
           name: "Laundry Liquid",
           category: "Laundry",
           body: "Laundry detergent liquid for domestic and institutional laundry loads.",
+          image: "/img/enaya/laundry.jpg",
         },
         {
           name: "Fabric Softener",
           category: "Laundry",
           body: "Fabric softener for improved fabric feel after laundering.",
+          image: "/img/enaya/fabric-softener.jpg",
         },
         {
           name: "Multipurpose Cleaner",
           category: "Surface",
           body: "General-purpose cleaner for routine cleaning of hard surfaces.",
+          image: "/img/enaya/multipurpose.jpg",
         },
         {
           name: "Glass Cleaner",
           category: "Surface",
           body: "Glass cleaner for streak-free cleaning of windows and glass surfaces.",
+          image: "/img/enaya/glass.jpg",
         },
         {
           name: "Disinfectant",
           category: "Hygiene",
           body: "Disinfectant for hygiene-focused cleaning protocols in commercial settings.",
-          image: "/img/enaya/disinfectant-kit.jpg",
+          image: "/img/enaya/disinfectant.jpg",
         },
         {
           name: "Hand Sanitizer",
@@ -315,7 +334,7 @@ export function getBrand(id: string) {
 
 export const privateLabel = {
   eyebrow: "Private Label & Contract Manufacturing",
-  title: "Your Vision. Our Formulation & Manufacturing Expertise.",
+  title: "Your Vision. Our Formulation and Manufacturing Expertise.",
   lead:
     "At WAED Industrial, we provide comprehensive private-label and contract manufacturing solutions, with a strong focus on product formulation, innovation, and customization.",
   body: [
@@ -368,7 +387,7 @@ export const quality = {
 
 export const markets = {
   eyebrow: "Markets & Export",
-  title: "Manufactured in Bahrain. Connecting to Regional & Global Markets.",
+  title: "Manufactured in Bahrain. Connecting to Regional and Global Markets.",
   lead:
     "Strategically based in the Kingdom of Bahrain, WAED Industrial is positioned to serve the growing demand for innovative cleaning and hygiene solutions across the GCC and international markets.",
   body: "We aim to build strong, long-term partnerships with distributors, retailers, and private-label businesses, supported by flexible manufacturing capabilities and a commitment to quality and reliable supply.",

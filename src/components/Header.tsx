@@ -5,21 +5,38 @@ import { asset } from "../lib/asset";
 
 export function Header() {
   const location = useLocation();
-  const isBrands = location.pathname === "/brands";
+  const isHome = location.pathname === "/" || location.pathname === "";
+  const isBrandsHub = location.pathname === "/brands";
+  const isBrandDetail = /^\/brands\/[^/]+/.test(location.pathname);
+  const isLightSurface = isBrandDetail;
+
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [overDark, setOverDark] = useState(true);
+  const [overDark, setOverDark] = useState(() => isHome || isBrandsHub);
 
   useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY;
       setScrolled(y > 12);
-      if (isBrands) {
-        setOverDark(y < window.innerHeight * 0.72);
-      } else {
-        setOverDark(y < window.innerHeight * 0.95);
+
+      if (isLightSurface) {
+        setOverDark(false);
+        return;
       }
+
+      if (isBrandsHub) {
+        setOverDark(y < window.innerHeight * 0.72);
+        return;
+      }
+
+      if (isHome) {
+        setOverDark(y < window.innerHeight * 0.95);
+        return;
+      }
+
+      setOverDark(false);
     };
+
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
@@ -27,7 +44,7 @@ export function Header() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, [isBrands, location.pathname]);
+  }, [isHome, isBrandsHub, isLightSurface, location.pathname]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -41,12 +58,12 @@ export function Header() {
   }, [location.pathname, location.hash]);
 
   const close = () => setOpen(false);
-  const light = overDark && !scrolled && !open;
+  const light = overDark && !scrolled && !open && !isLightSurface;
 
   return (
     <>
       <header
-        className={`site-header${scrolled || open ? " is-scrolled" : ""}${light ? " is-light" : ""}${open ? " is-open" : ""}`}
+        className={`site-header${scrolled || open || isLightSurface ? " is-scrolled" : ""}${light ? " is-light" : ""}${open ? " is-open" : ""}`}
       >
         <div className="site-header__inner">
           <Link className="brand-lockup" to="/" aria-label={`${site.displayName} home`} onClick={close}>

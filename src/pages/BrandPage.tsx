@@ -19,51 +19,46 @@ export function BrandPage() {
 
   return (
     <>
-      <main className="page-parallax is-ready brands-page">
-        <section className="section section--alt brand-detail">
-          <div className="shell">
-            <p className="brand-detail__crumb reveal reveal--up">
+      <main className="page-parallax is-ready brand-page">
+        <section className="brand-page__hero" aria-label={brand.name}>
+          <div className="shell brand-page__hero-inner">
+            <p className="brand-page__crumb">
               <Link to="/brands">Our Brands</Link>
-              <span aria-hidden="true"> / </span>
+              <span aria-hidden="true">/</span>
               <span>{brand.name}</span>
             </p>
 
-            <div className="brand-block__copy">
-              <p className="eyebrow">Brand</p>
-              <div className="brand-block__identity reveal reveal--up">
-                <img
-                  className="brand-block__logo"
-                  src={asset(brand.logo)}
-                  alt={`${brand.name} logo`}
-                  width={220}
-                  height={220}
-                />
-                <h1
-                  className={`brand-block__name${brand.titleClass ? ` ${brand.titleClass}` : ""}`}
-                >
-                  {brand.name}
-                </h1>
-                <p className="brand-block__tagline">{brand.tagline}</p>
+            <div className="brand-page__identity reveal reveal--up">
+              <img
+                className="brand-page__logo"
+                src={asset(brand.logo)}
+                alt={`${brand.name} logo`}
+                width={200}
+                height={200}
+              />
+              <div className="brand-page__intro">
+                <p className="eyebrow">Brand by WAED Industrial</p>
+                <h1 className={brand.titleClass}>{brand.name}</h1>
+                <p className="brand-page__tagline">{brand.tagline}</p>
+                <MarkRule />
+                <p className="brand-page__story">{brand.story}</p>
+                <ul className="brand-page__focus" aria-label={`${brand.name} focus markets`}>
+                  {brand.focus.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
               </div>
-              <MarkRule />
-              <p className="lead reveal reveal--up">{brand.story}</p>
-              <ul
-                className="brand-block__focus reveal reveal--up"
-                aria-label={`${brand.name} focus markets`}
-              >
-                {brand.focus.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
             </div>
           </div>
         </section>
 
-        <section className="section">
+        <section className="section brand-page__products" aria-labelledby="brand-products-title">
           <div className="shell">
             <div className="section-head section-head--center">
               <p className="eyebrow">Products</p>
-              <h2 className="brand-detail__products-title">{brand.name} Product Range</h2>
+              <h2 id="brand-products-title" className="brand-page__products-title">
+                {brand.name} Product Range
+              </h2>
               <MarkRule />
               <p className="lead reveal reveal--up">
                 Explore the {brand.name} range — manufactured by WAED Industrial in Bahrain.
@@ -71,18 +66,14 @@ export function BrandPage() {
             </div>
 
             <ul className="brand-product-grid reveal reveal--up" aria-label={`${brand.name} products`}>
-              {brand.products.map((product) => (
+              {brand.products.map((product, i) => (
                 <li key={product.name} className="brand-product">
                   <div className="brand-product__media">
                     {product.image ? (
-                      <img
-                        src={asset(product.image)}
-                        alt={product.name}
-                        loading="lazy"
-                      />
+                      <img src={asset(product.image)} alt={product.name} loading="lazy" />
                     ) : (
                       <div className="brand-product__placeholder" aria-hidden="true">
-                        <span>{product.name.slice(0, 1)}</span>
+                        <span>{String(i + 1).padStart(2, "0")}</span>
                       </div>
                     )}
                   </div>
@@ -95,30 +86,14 @@ export function BrandPage() {
               ))}
             </ul>
 
-            {brand.gallery.length > 0 && (
-              <div
-                className={`brands-thumbs brands-thumbs--detail reveal reveal--up${
-                  brand.gallery.length < 3 ? " brands-thumbs--sparse" : ""
-                }`}
-                aria-label={`${brand.name} photography`}
-              >
-                {brand.gallery.map((shot) => (
-                  <figure key={shot.src} className="brands-thumbs__item">
-                    <img src={asset(shot.src)} alt={shot.alt} loading="lazy" />
-                    <figcaption>{shot.caption}</figcaption>
-                  </figure>
-                ))}
-              </div>
-            )}
-
-            <p className="section-head__action section-head__action--center reveal reveal--up">
+            <div className="brand-page__actions reveal reveal--up">
               <Link className="btn btn-ghost" to="/brands">
                 Back to Our Brands
               </Link>
               <Link className="btn btn-primary" to={{ pathname: "/", hash: "contact" }}>
                 Request a Quote
               </Link>
-            </p>
+            </div>
           </div>
         </section>
       </main>

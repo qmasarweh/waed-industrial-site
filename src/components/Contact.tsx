@@ -39,7 +39,7 @@ export function Contact() {
   return (
     <section className="section section--alt scene scene--cover" id="contact">
       <div className="shell contact-grid">
-        <div>
+        <div className="contact-intro">
           <p className="eyebrow">{contact.eyebrow}</p>
           <ScrollType text={contact.title} mode="rise" />
           <MarkRule className="mark-rule--left" />
