@@ -41,6 +41,22 @@ export function PrivateLabel() {
         </div>
       </div>
 
+      <div className="shell private-label__services reveal reveal--up" id="our-services">
+        <div className="section-head section-head--center">
+          <p className="eyebrow">What we offer</p>
+          <h3 className="private-label__services-title">{privateLabel.servicesTitle}</h3>
+          <MarkRule />
+        </div>
+        <ul className="service-list" aria-label={privateLabel.servicesTitle}>
+          {privateLabel.services.map((service, index) => (
+            <li key={service}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <strong>{service}</strong>
+            </li>
+          ))}
+        </ul>
+      </div>
+
       <div className="private-label__marquee reveal reveal--up">
         <Marquee items={[...privateLabel.services]} />
         <Marquee items={[...privateLabel.services]} reverse />

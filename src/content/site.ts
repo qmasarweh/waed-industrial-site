@@ -34,6 +34,7 @@ export const nav: NavItem[] = [
   { href: "/#factory", label: "Factory" },
   { href: "/brands", label: "Our Brands" },
   { href: "/#private-label", label: "Private Label" },
+  { href: "/#our-services", label: "Our Services" },
   { href: "/#quality", label: "Quality" },
   { href: "/#contact", label: "Contact" },
 ];
@@ -341,6 +342,7 @@ export const privateLabel = {
     "From developing new cleaning formulations to enhancing existing products, we work with our partners to create solutions tailored to their performance requirements, market preferences, and brand identity.",
     "Our integrated services cover the journey from formulation development and laboratory sampling to manufacturing, filling, labeling, and packaging.",
   ],
+  servicesTitle: "Our Services",
   services: [
     "Custom Formulation Development & Innovation",
     "Product Research, Sampling & Evaluation",
