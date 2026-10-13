@@ -1,3 +1,27 @@
+@font-face {
+  font-family: "CoText";
+  src: url("../assets/fonts/CoText-Light.otf") format("opentype");
+  font-weight: 300 350;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CoText";
+  src: url("../assets/fonts/CoText.otf") format("opentype");
+  font-weight: 400 550;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CoText";
+  src: url("../assets/fonts/CoText-Bold.otf") format("opentype");
+  font-weight: 600 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --navy: #1d2d44;
   --navy-deep: #0e1828;
@@ -31,8 +55,8 @@
   --text-title: clamp(1.75rem, 1.15rem + 2.2vw, 3rem);
   --text-body: 1.05rem;
   --text-meta: 0.72rem;
-  --font-display: "Space Grotesk", "Segoe UI", sans-serif;
-  --font-body: "Manrope", "Segoe UI", sans-serif;
+  --font-display: "CoText", "Segoe UI", sans-serif;
+  --font-body: "CoText", "Segoe UI", sans-serif;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --header-h: 4.5rem;
 }
