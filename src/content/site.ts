@@ -30,7 +30,7 @@ export type NavItem = NavLink;
 
 export const nav: NavItem[] = [
   { href: "/#about", label: "About" },
-  { href: "/#company-profile", label: "Company Profile" },
+  { href: "/#about-us", label: "About Us" },
   { href: "/#factory", label: "Factory" },
   { href: "/brands", label: "Our Brands" },
   { href: "/#private-label", label: "Private Label" },
@@ -55,28 +55,52 @@ export const home = {
 
 export const about = {
   eyebrow: "About WAED Industrial",
-  title: "Innovative cleaning and hygiene solutions.",
+  title: "Innovative Cleaning & Hygiene Solutions",
   shortIntro: [
-    "WAED Industrial is a Bahrain-based manufacturing company specializing in the development and production of innovative cleaning and hygiene solutions.",
-    "Combining modern manufacturing capabilities, technical expertise, and a commitment to quality, we develop our own brands and provide private-label manufacturing solutions for consumer, commercial, and industrial markets.",
+    "Based in Hidd, Kingdom of Bahrain, WAED Industrial develops and manufactures cleaning and hygiene products for household, commercial, and industrial markets.",
+    "Through our own brands and private-label manufacturing services, we bring products to market with a focus on performance, consistency, and reliability.",
   ],
-  profileEyebrow: "Company Profile",
+  profileEyebrow: "About Us",
   profileTitle: "Innovation in Manufacturing. Excellence in Every Product.",
   fullProfile: [
-    "WAED Industrial is a Bahrain-based manufacturing company dedicated to developing and producing high-quality cleaning and hygiene solutions for consumer, commercial, and industrial applications.",
-    "Driven by innovation, technical expertise, and a commitment to continuous improvement, we combine modern manufacturing capabilities with a quality-focused approach to create products that meet evolving market needs.",
-    "Our operations bring together product formulation, manufacturing, filling, packaging, and quality control, providing an integrated platform for our own brands and private-label manufacturing partnerships.",
-    "At WAED Industrial, we believe manufacturing goes beyond production. It is about creating value, building trust, and establishing lasting partnerships through consistency, flexibility, and a commitment to excellence.",
-  ],
-  closing: "Rooted in Bahrain. Driven by Innovation. Built for the Future.",
-  values: [
-    { name: "Quality", note: "Consistent quality across every stage of manufacturing." },
-    { name: "Innovation", note: "Formulation development and continuous improvement." },
-    { name: "Safety", note: "Safety-conscious practice across production and handling." },
-    { name: "Customer Focus", note: "Partnerships built on responsiveness and trust." },
-    { name: "Reliability", note: "Flexible manufacturing and dependable supply." },
+    "At WAED Industrial, our ambition is to set a higher standard for cleaning manufacturing.",
+    "We believe exceptional products are the result of disciplined execution, purposeful innovation, and uncompromising attention to detail.",
+    "This philosophy shapes the way we operate, the trust we build, and the lasting value we create for our customers and business partners.",
+    "We are building an industrial company designed not only to meet expectations, but to raise them.",
   ],
 } as const;
+
+export const pillars = [
+  {
+    id: "market-demand",
+    eyebrow: "Engineered for Market Demand",
+    title: "Built for Real Needs. Designed to Compete.",
+    body: [
+      "At WAED Industrial, we believe successful products begin with a deep understanding of the markets they serve.",
+      "We translate customer expectations and evolving market demands into cleaning solutions tailored for performance, functionality, fragrance preferences, and packaging requirements.",
+      "Our market-driven approach enables us to develop products with a clear commercial purpose, helping our brands and business partners deliver solutions that are relevant, competitive, and aligned with their target markets.",
+    ],
+  },
+  {
+    id: "end-to-end",
+    eyebrow: "End-to-End Solutions",
+    title: "One Partner. A Complete Manufacturing Solution.",
+    body: [
+      "At WAED Industrial, we simplify the journey from product concept to market-ready solutions by bringing essential manufacturing services together under one roof.",
+      "Our integrated approach ensures seamless coordination between product development, production, and final delivery, helping our partners streamline operations, maintain consistency, and bring their products to market with confidence.",
+    ],
+  },
+  {
+    id: "partnerships",
+    eyebrow: "Built for Partnerships",
+    title: "Beyond Manufacturing. Growing Together.",
+    body: [
+      "At WAED Industrial, we see every partnership as an opportunity to create lasting value and shared success.",
+      "We work closely with our customers and business partners to understand their goals, respond to their evolving needs, and support their long-term growth.",
+      "Our approach is built on transparency, mutual trust, and a commitment to delivering on our promises — because we believe the strongest partnerships are those that grow together.",
+    ],
+  },
+] as const;
 
 export const factory = {
   eyebrow: "Our Factory",

@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Hero } from "../components/Hero";
 import { About } from "../components/About";
 import { CompanyProfile } from "../components/CompanyProfile";
+import { Pillars } from "../components/Pillars";
 import { Factory } from "../components/Factory";
 import { Products } from "../components/Products";
 import { PrivateLabel } from "../components/PrivateLabel";
@@ -51,7 +52,7 @@ export function HomePage() {
         <Hero />
         <About />
         <CompanyProfile />
-        <Statement line="Rooted in Bahrain. Driven by Innovation. Built for the Future." />
+        <Pillars />
         <MediaBand
           src={asset("/img/facility-media.jpg")}
           alt="WAED Industrial manufacturing facility exterior"

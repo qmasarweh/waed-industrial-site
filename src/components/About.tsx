@@ -1,7 +1,6 @@
 import { about } from "../content/site";
 import { MarkRule } from "./MarkRule";
 import { ScrollType } from "./motion/ScrollType";
-import { DriftRail } from "./motion/DriftRail";
 
 export function About() {
   return (
@@ -18,8 +17,6 @@ export function About() {
           ))}
         </div>
       </div>
-
-      <DriftRail items={about.values.map((v) => v.name)} />
     </section>
   );
 }

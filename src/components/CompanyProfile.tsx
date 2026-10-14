@@ -4,7 +4,7 @@ import { ScrollType } from "./motion/ScrollType";
 
 export function CompanyProfile() {
   return (
-    <section className="section section--alt scene" id="company-profile">
+    <section className="section section--alt scene" id="about-us">
       <div className="shell">
         <div className="section-head section-head--center">
           <p className="eyebrow">{about.profileEyebrow}</p>
@@ -16,7 +16,6 @@ export function CompanyProfile() {
           {about.fullProfile.map((paragraph) => (
             <p key={paragraph.slice(0, 40)}>{paragraph}</p>
           ))}
-          <p className="about-profile__closing">{about.closing}</p>
         </div>
       </div>
     </section>
