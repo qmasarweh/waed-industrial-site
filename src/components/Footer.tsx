@@ -34,7 +34,7 @@ export function Footer() {
             <a href={`mailto:${site.email}`}>{site.email}</a>
             <a href={`tel:${site.phoneHref}`}>{site.phoneDisplay}</a>
             <a href={site.mapLink} target="_blank" rel="noreferrer">
-              Hidd, Kingdom of Bahrain
+              Al Hidd, Kingdom of Bahrain
             </a>
           </div>
         </div>

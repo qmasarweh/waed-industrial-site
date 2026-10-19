@@ -8,17 +8,13 @@ export const site = {
   phoneDisplay: "+973 7793 0999",
   phoneHref: "+97377930999",
   address: {
-    line1: "Unit 9, Building 2094, Road 1529, Block 115",
-    locality: "Hidd",
+    line1: "Warehouse no. 9, Building 2094, Road 1529",
+    locality: "Al Hidd",
     region: "Kingdom of Bahrain",
     street:
-      "Unit 9, Building 2094, Road 1529, Block 115, Hidd, Kingdom of Bahrain",
+      "Warehouse no. 9, Building 2094, Road 1529, Al Hidd, Kingdom of Bahrain",
   },
-  mapLink:
-    "https://www.google.com/maps/search/?api=1&query=" +
-    encodeURIComponent(
-      "Unit 9, Building 2094, Road 1529, Block 115, Hidd, Bahrain",
-    ),
+  mapLink: "https://maps.app.goo.gl/cq6guLB9VeXGTYkr9",
 } as const;
 
 export type NavLink = {
@@ -57,7 +53,7 @@ export const about = {
   eyebrow: "About WAED Industrial",
   title: "Innovative Cleaning & Hygiene Solutions",
   shortIntro: [
-    "Based in Hidd, Kingdom of Bahrain, WAED Industrial develops and manufactures cleaning and hygiene products for household, commercial, and industrial markets.",
+    "Based in Al Hidd, Kingdom of Bahrain, WAED Industrial develops and manufactures cleaning and hygiene products for household, commercial, and industrial markets.",
     "Through our own brands and private-label manufacturing services, we bring products to market with a focus on performance, consistency, and reliability.",
   ],
   profileEyebrow: "About Us",
@@ -111,7 +107,7 @@ export const factory = {
     "Our manufacturing facility in Bahrain is equipped with industrial mixing systems, water treatment technology, automatic and semi-automatic filling equipment, labeling and packaging solutions, and laboratory facilities for quality control.",
     "Our integrated capabilities support product development, flexible production volumes, multiple packaging formats, and private-label manufacturing to meet the diverse needs of our business partners.",
   ],
-  location: "Unit 9, Building 2094, Road 1529, Block 115, Hidd, Kingdom of Bahrain",
+  location: "Warehouse no. 9, Building 2094, Road 1529, Al Hidd, Kingdom of Bahrain",
   journey: {
     kicker: "From Concept to Shipment",
     title: "The WAED Manufacturing Journey",

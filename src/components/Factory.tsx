@@ -43,13 +43,13 @@ export function Factory() {
             <Parallax speed="fast" scale={1.2}>
               <img
                 src={asset("/img/facility-hero.png")}
-                alt="WAED Industrial manufacturing facility in Hidd, Bahrain"
+                alt="WAED Industrial manufacturing facility in Al Hidd, Bahrain"
                 width={1400}
                 height={900}
                 loading="lazy"
               />
             </Parallax>
-            <figcaption>Manufacturing facility · Hidd, Bahrain</figcaption>
+            <figcaption>Manufacturing facility · Al Hidd, Bahrain</figcaption>
           </figure>
         </div>
 

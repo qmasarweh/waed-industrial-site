@@ -130,7 +130,7 @@ export function Hero() {
         </div>
 
         <div className="shell hero__content" ref={content}>
-          <p className="hero__place">Bahrain · Hidd</p>
+          <p className="hero__place">Bahrain · Al Hidd</p>
           <img
             className="hero__brand"
             src={asset("/img/waed-logo-horizontal-white.svg")}
