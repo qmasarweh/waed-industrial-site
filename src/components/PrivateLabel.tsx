@@ -27,13 +27,16 @@ export function PrivateLabel() {
         </div>
 
         <div className="private-label__media reveal reveal--right">
-          <figure className="media-frame media-frame--parallax">
-            <Parallax speed="medium" scale={1.18}>
+          <figure
+            className="media-frame media-frame--parallax media-frame--fit"
+            style={{ aspectRatio: "800 / 1328" }}
+          >
+            <Parallax speed="medium" scale={1} distance={0}>
               <img
-                src={asset("/img/logo_extract_3_2.png")}
-                alt="WAED Industrial Innovation Company branded facility"
-                width={1200}
-                height={900}
+                src={asset("/img/office.jpg")}
+                alt="WAED Industrial meeting room"
+                width={800}
+                height={1328}
                 loading="lazy"
               />
             </Parallax>

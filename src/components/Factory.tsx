@@ -39,17 +39,20 @@ export function Factory() {
               </a>
             </p>
           </div>
-          <figure className="media-frame media-frame--parallax reveal reveal--scale">
-            <Parallax speed="fast" scale={1.2}>
+          <figure
+            className="media-frame media-frame--parallax media-frame--fit reveal reveal--scale"
+            style={{ aspectRatio: "686 / 1024" }}
+          >
+            <Parallax speed="fast" scale={1} distance={0}>
               <img
-                src={asset("/img/facility-hero.png")}
-                alt="WAED Industrial manufacturing facility in Al Hidd, Bahrain"
-                width={1400}
-                height={900}
+                src={asset("/img/factory-machines.jpg")}
+                alt="Mixing tanks on the WAED Industrial production floor in Al Hidd"
+                width={686}
+                height={1024}
                 loading="lazy"
               />
             </Parallax>
-            <figcaption>Manufacturing facility · Al Hidd, Bahrain</figcaption>
+            <figcaption>Production floor · Al Hidd, Bahrain</figcaption>
           </figure>
         </div>
 

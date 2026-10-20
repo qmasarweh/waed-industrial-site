@@ -18,7 +18,7 @@ export function BrandsPage() {
         <section className="brands-hero" aria-label="Our Brands">
           <div className="brands-hero__media" aria-hidden="true">
             <img
-              src={asset("/img/brands-hero-house.jpg")}
+              src={asset("/img/hero-facility.jpg")}
               alt=""
               width={1920}
               height={1080}

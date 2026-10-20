@@ -27,25 +27,8 @@ export function Hero() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const fine = window.matchMedia("(pointer: fine)").matches;
+    const scrub = fine ? 0.25 : true;
     const ctx = gsap.context(() => {
-      const scrub = fine ? 0.25 : true;
-
-      gsap.fromTo(
-        media,
-        { yPercent: -4, scale: 1.12 },
-        {
-          yPercent: 10,
-          scale: 1.02,
-          ease: "none",
-          scrollTrigger: {
-            trigger: el,
-            start: "top top",
-            end: "bottom top",
-            scrub,
-          },
-        },
-      );
-
       if (veil.current) {
         gsap.fromTo(
           veil.current,
@@ -63,8 +46,11 @@ export function Hero() {
         );
       }
 
-      // Entire hero copy rises quickly and clears — keep opacity readable until late
-      if (copy) {
+      // On a phone the type stays large, centered, and fully visible.
+      const phone = window.matchMedia("(max-width: 759px)").matches;
+      if (copy && phone) {
+        gsap.set(copy, { yPercent: 0, opacity: 1, clearProps: "transform,opacity" });
+      } else if (copy) {
         gsap.to(copy, {
           yPercent: fine ? -55 : -30,
           opacity: 0.35,
@@ -116,7 +102,7 @@ export function Hero() {
           <div className="hero__media">
             <img
               ref={img}
-              src={asset("/img/facility-hero.png")}
+              src={asset("/img/hero-facility.jpg")}
               alt=""
               width={1920}
               height={1080}

@@ -35,6 +35,12 @@ export function ScrollType({
 
     const ctx = gsap.context(() => {
       if (mode === "hero") {
+        const phone = window.matchMedia("(max-width: 759px)").matches;
+        if (phone) {
+          gsap.set(el, { y: 0, opacity: 1, clearProps: "transform" });
+          return;
+        }
+
         gsap.fromTo(
           el,
           { y: 28, opacity: 0 },

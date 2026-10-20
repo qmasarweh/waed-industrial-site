@@ -54,10 +54,12 @@ export function HomePage() {
         <CompanyProfile />
         <Pillars />
         <MediaBand
-          src={asset("/img/facility-media.jpg")}
-          alt="WAED Industrial manufacturing facility exterior"
-          caption="Facility · Brand · Bahrain"
+          src={asset("/img/production-line.jpg")}
+          alt="WAED Industrial production line in Al Hidd"
+          caption="Production · Al Hidd"
           speed="fast"
+          fit="contain"
+          ratio="1024 / 416"
         />
         <Factory />
         <Products />
@@ -68,10 +70,11 @@ export function HomePage() {
         />
         <PrivateLabel />
         <MediaBand
-          src={asset("/img/logo-wall.png")}
+          src={asset("/img/logo-wall.jpg")}
           alt="WAED Industrial brand wall"
-          caption="Brand · Built in Bahrain"
           speed="medium"
+          fit="contain"
+          ratio="1024 / 434"
         />
         <Quality />
         <Markets />
